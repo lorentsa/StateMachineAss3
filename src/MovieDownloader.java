@@ -38,4 +38,64 @@ public class MovieDownloader {
         currStateHandleQueue=  handleQueueIdle;
         currStateWatchingMovie= watchingMovieIdle;
     }
+
+    public void setCurrStateWatchingMovie(IState currStateWatchingMovie) {
+        this.currStateWatchingMovie = currStateWatchingMovie;
+    }
+
+    public void setCurrStateDownload(IState currStateDownload) {
+        this.currStateDownload = currStateDownload;
+    }
+
+    public void setCurrStateHandleQueue(IState currStateHandleQueue) {
+        this.currStateHandleQueue = currStateHandleQueue;
+    }
+
+    public IState getDownloadCheck() {
+        return downloadCheck;
+    }
+
+    public IState getDownloadFile() {
+        return downloadFile;
+    }
+
+    public IState getDownloadIdle() {
+        return downloadIdle;
+    }
+
+    public IState getDownloadRepair() {
+        return downloadRepair;
+    }
+
+    public IState getDownloadWaiting() {
+        return downloadWaiting;
+    }
+
+    public IState getEnterQueue() {
+        return enterQueue;
+    }
+
+    public IState getHandleQueueIdle() {
+        return handleQueueIdle;
+    }
+
+    public IState getOffline() {
+        return offline;
+    }
+
+    public IState getOnline() {
+        return online;
+    }
+
+    public IState getPauseMovie() {
+        return pauseMovie;
+    }
+
+    public IState getWatchingMovieIdle() {
+        return watchingMovieIdle;
+    }
+
+    public IState getWatchMovie() {
+        return watchMovie;
+    }
 }
