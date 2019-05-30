@@ -19,18 +19,18 @@ public class MovieDownloader {
     User currUser;
 
     public MovieDownloader(){
-        downloadCheck = new DownloadCheck();
-        downloadFile = new DownloadFile();
-        downloadIdle = new DownloadIdle();
-        downloadRepair = new DownloadRepair();
-        downloadWaiting = new DownloadWaiting();
-        enterQueue = new EnterQueue();
-        handleQueueIdle = new HandleQueueIdle();
-        offline = new Offline();
-        online = new Online();
-        pauseMovie = new PauseMovie();
-        watchingMovieIdle = new WatchingMovieIdle();
-        watchMovie = new WatchMovie();
+        downloadCheck = new DownloadCheck(this);
+        downloadFile = new DownloadFile(this);
+        downloadIdle = new DownloadIdle(this);
+        downloadRepair = new DownloadRepair(this);
+        downloadWaiting = new DownloadWaiting(this);
+        enterQueue = new EnterQueue(this);
+        handleQueueIdle = new HandleQueueIdle(this);
+        offline = new Offline(this);
+        online = new Online(this);
+        pauseMovie = new PauseMovie(this);
+        watchingMovieIdle = new WatchingMovieIdle(this);
+        watchMovie = new WatchMovie(this);
 
         currUser=null;
 
