@@ -2,7 +2,7 @@ public class PauseMovie implements IState {
 
     @Override
     public void turnOn() {
-        
+
     }
 
     @Override
