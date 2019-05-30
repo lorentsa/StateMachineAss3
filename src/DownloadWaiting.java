@@ -1,4 +1,4 @@
-public class DownloadWating implements IState{
+public class DownloadWaiting implements IState{
     @Override
     public void turnOff() {
 
