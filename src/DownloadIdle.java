@@ -2,10 +2,12 @@ public class DownloadIdle implements IState{
 
     private int chance;
     private boolean freeStorage;
+    private MovieDownloader movieDownloader;
 
-    public DownloadIdle() {
+    public DownloadIdle(MovieDownloader movieDownloader) {
         chance = 0;
         freeStorage = false;
+        this.movieDownloader = movieDownloader;
     }
 
     @Override

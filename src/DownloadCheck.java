@@ -1,5 +1,11 @@
 public class DownloadCheck implements IState {
 
+    private MovieDownloader movieDownloader;
+
+    public DownloadCheck(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void turnOff() {
 
