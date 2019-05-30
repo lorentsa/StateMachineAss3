@@ -1,22 +1,22 @@
 public class MovieDownloader {
-    IState downloadCheck;
-    IState downloadFile;
-    IState downloadIdle;
-    IState downloadRepair;
-    IState downloadWaiting;
-    IState enterQueue;
-    IState handleQueueIdle;
-    IState offline;
-    IState online;
-    IState pauseMovie;
-    IState watchingMovieIdle;
-    IState watchMovie;
+   private IState downloadCheck;
+   private IState downloadFile;
+   private IState downloadIdle;
+   private IState downloadRepair;
+   private IState downloadWaiting;
+   private IState enterQueue;
+   private IState handleQueueIdle;
+   private IState offline;
+   private IState online;
+   private IState pauseMovie;
+   private IState watchingMovieIdle;
+   private IState watchMovie;
 
-    IState currStateWatchingMovie;
-    IState currStateDownload;
-    IState currStateHandleQueue;
+   private IState currStateWatchingMovie;
+   private IState currStateDownload;
+   private IState currStateHandleQueue;
 
-    User currUser;
+   private User currUser;
 
     public MovieDownloader(){
         downloadCheck = new DownloadCheck(this);
@@ -97,5 +97,84 @@ public class MovieDownloader {
 
     public IState getWatchMovie() {
         return watchMovie;
+    }
+
+
+    public void turnOff(){
+        currStateWatchingMovie.turnOff();
+        currStateHandleQueue.turnOff();
+        currStateDownload.turnOff();
+    }
+
+    public void turnOn(){
+        currStateWatchingMovie.turnOn();
+        currStateHandleQueue.turnOn();
+        currStateDownload.turnOn();
+    }
+
+    public void internetOff(){
+        currStateWatchingMovie.internetOff();
+        currStateHandleQueue.internetOff();
+        currStateDownload.internetOff();
+    }
+
+    public void internetOn(){
+        currStateWatchingMovie.internetOn();
+        currStateHandleQueue.internetOn();
+        currStateDownload.internetOn();
+    }
+
+    public void fileRequest(){
+        currStateWatchingMovie.fileRequest();
+        currStateHandleQueue.fileRequest();
+        currStateDownload.fileRequest();
+    }
+
+    public void downloadAborted(){
+        currStateWatchingMovie.downloadAborted();
+        currStateHandleQueue.downloadAborted();
+        currStateDownload.downloadAborted();
+    }
+
+    public void downloadError(){
+        currStateWatchingMovie.downloadError();
+        currStateHandleQueue.downloadError();
+        currStateDownload.downloadError();
+    }
+
+    public void errorFixed(){
+        currStateWatchingMovie.errorFixed();
+        currStateHandleQueue.errorFixed();
+        currStateDownload.errorFixed();
+    }
+
+    public void movieOn(){
+        currStateWatchingMovie.movieOn();
+        currStateHandleQueue.movieOn();
+        currStateDownload.movieOn();
+    }
+
+    public void restartMovie(){
+        currStateWatchingMovie.restartMovie();
+        currStateHandleQueue.restartMovie();
+        currStateDownload.restartMovie();
+    }
+
+    public void holdMovie(){
+        currStateWatchingMovie.holdMovie();
+        currStateHandleQueue.holdMovie();
+        currStateDownload.holdMovie();
+    }
+
+    public void movieOff(){
+        currStateWatchingMovie.movieOff();
+        currStateHandleQueue.movieOff();
+        currStateDownload.movieOff();
+    }
+
+    public void resume(){
+        currStateWatchingMovie.resume();
+        currStateHandleQueue.resume();
+        currStateDownload.resume();
     }
 }
