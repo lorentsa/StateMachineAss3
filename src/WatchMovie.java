@@ -1,9 +1,5 @@
 public class WatchMovie implements IState {
 
-    @Override
-    public void turnOn() {
-
-    }
 
     @Override
     public void turnOff() {
@@ -11,12 +7,7 @@ public class WatchMovie implements IState {
     }
 
     @Override
-    public void internetOff() {
-
-    }
-
-    @Override
-    public void internetOn() {
+    public void turnOn() {
 
     }
 

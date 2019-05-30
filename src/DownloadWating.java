@@ -1,11 +1,11 @@
 public class DownloadWating implements IState{
     @Override
-    public void internetOff() {
+    public void turnOff() {
 
     }
 
     @Override
-    public void internetOn() {
+    public void turnOn() {
 
     }
 
