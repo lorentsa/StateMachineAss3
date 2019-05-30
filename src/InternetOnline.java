@@ -1,8 +1,8 @@
-public class Online implements IState{
+public class InternetOnline implements IState{
 
     private MovieDownloader movieDownloader;
 
-    public Online(MovieDownloader movieDownloader) {
+    public InternetOnline(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
     }
 

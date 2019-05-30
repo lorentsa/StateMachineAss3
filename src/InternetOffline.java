@@ -1,14 +1,16 @@
-public class Offline implements IState {
+public class InternetOffline implements IState {
 
     private MovieDownloader movieDownloader;
 
-    public Offline(MovieDownloader movieDownloader) {
+    public InternetOffline(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
     }
 
     @Override
     public void internetOff() {
-        System.out.println();
+        System.out.println("enter InternetOffline state");
+        
+        System.out.println("exit InternetOffline state");
     }
 
     @Override
