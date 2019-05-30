@@ -1,6 +1,4 @@
 public interface IState {
-    void turnOn();
-    void turnOff();
     void internetOff();
     void internetOn();
     void fileRequest();
