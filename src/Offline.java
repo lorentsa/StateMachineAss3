@@ -1,7 +1,14 @@
 public class Offline implements IState {
+
+    private MovieDownloader movieDownloader;
+
+    public Offline(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void internetOff() {
-
+        System.out.println();
     }
 
     @Override

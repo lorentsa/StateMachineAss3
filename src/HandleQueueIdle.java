@@ -1,8 +1,18 @@
 public class HandleQueueIdle implements IState {
+
+    private MovieDownloader movieDownloader;
+
+    public HandleQueueIdle(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void fileRequest() {
 
     }
+
+
+
 
 
 

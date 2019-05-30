@@ -1,4 +1,11 @@
 public class EnterQueue implements IState {
+
+    private MovieDownloader movieDownloader;
+
+    public EnterQueue(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void fileRequest() {
 
