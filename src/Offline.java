@@ -16,12 +16,12 @@ public class Offline implements IState {
 
 
     @Override
-    public void login() {
+    public void turnOn() {
 
     }
 
     @Override
-    public void logout() {
+    public void turnOff() {
 
     }
 
