@@ -1,4 +1,11 @@
 public class DownloadRepair implements IState{
+
+    private MovieDownloader movieDownloader;
+
+    public DownloadRepair(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void turnOff() {
 

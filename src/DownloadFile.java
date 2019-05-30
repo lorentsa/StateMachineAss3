@@ -1,4 +1,11 @@
 public class DownloadFile implements IState{
+
+    private MovieDownloader movieDownloader;
+
+    public DownloadFile(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void turnOff() {
 
