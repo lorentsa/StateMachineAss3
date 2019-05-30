@@ -1,22 +1,12 @@
 public class WatchingMovieIdle implements IState {
 
     @Override
-    public void turnOn() {
-
-    }
-
-    @Override
     public void turnOff() {
 
     }
 
     @Override
-    public void internetOff() {
-
-    }
-
-    @Override
-    public void internetOn() {
+    public void turnOn() {
 
     }
 

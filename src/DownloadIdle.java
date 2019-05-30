@@ -9,12 +9,12 @@ public class DownloadIdle implements IState{
     }
 
     @Override
-    public void internetOff() {
+    public void turnOff() {
 
     }
 
     @Override
-    public void internetOn() {
+    public void turnOn() {
 
     }
 
