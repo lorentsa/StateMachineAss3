@@ -4,6 +4,13 @@ public class MovieDownloader {
     IState downloadIdle;
     IState downloadRepair;
     IState downloadWaiting;
+    IState enterQueue;
+    IState handleQueueIdle;
+    IState offline;
+    IState online;
+    IState pauseMovie;
+    IState watchingMovieIdle;
+    IState watchMovie;
 
     IState currStateWatchingMovie;
     IState currStateDownload;
@@ -17,11 +24,18 @@ public class MovieDownloader {
         downloadIdle = new DownloadIdle();
         downloadRepair = new DownloadRepair();
         downloadWaiting = new DownloadWaiting();
+        enterQueue = new EnterQueue();
+        handleQueueIdle = new HandleQueueIdle();
+        offline = new Offline();
+        online = new Online();
+        pauseMovie = new PauseMovie();
+        watchingMovieIdle = new WatchingMovieIdle();
+        watchMovie = new WatchMovie();
 
         currUser=null;
 
-        currStateDownload= ;
-        currStateHandleQueue=  ;
-        currStateWatchingMovie= ;
+        currStateDownload= downloadIdle;
+        currStateHandleQueue=  handleQueueIdle;
+        currStateWatchingMovie= watchingMovieIdle;
     }
 }
