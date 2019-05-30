@@ -1,12 +1,18 @@
-public class PauseMovie implements IState {
+public class EnterQueue implements IState {
+    @Override
+    public void fileRequest() {
+
+    }
+
+
 
     @Override
-    public void turnOff() {
+    public void turnOn() {
 
     }
 
     @Override
-    public void turnOn() {
+    public void turnOff() {
 
     }
 
@@ -17,11 +23,6 @@ public class PauseMovie implements IState {
 
     @Override
     public void internetOn() {
-
-    }
-
-    @Override
-    public void fileRequest() {
 
     }
 

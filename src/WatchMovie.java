@@ -12,6 +12,16 @@ public class WatchMovie implements IState {
     }
 
     @Override
+    public void internetOff() {
+
+    }
+
+    @Override
+    public void internetOn() {
+
+    }
+
+    @Override
     public void fileRequest() {
 
     }

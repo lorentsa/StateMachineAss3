@@ -1,15 +1,4 @@
-public class PauseMovie implements IState {
-
-    @Override
-    public void turnOff() {
-
-    }
-
-    @Override
-    public void turnOn() {
-
-    }
-
+public class Offline implements IState {
     @Override
     public void internetOff() {
 
@@ -17,6 +6,22 @@ public class PauseMovie implements IState {
 
     @Override
     public void internetOn() {
+
+    }
+
+
+
+
+
+
+
+    @Override
+    public void turnOn() {
+
+    }
+
+    @Override
+    public void turnOff() {
 
     }
 
