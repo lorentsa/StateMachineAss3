@@ -1,5 +1,11 @@
 public class DownloadCheck implements IState {
 
+    private MovieDownloader movieDownloader;
+
+    public DownloadCheck(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void turnOff() {
 
@@ -12,7 +18,7 @@ public class DownloadCheck implements IState {
 
     @Override
     public void internetOff() {
-        
+
     }
 
     @Override
