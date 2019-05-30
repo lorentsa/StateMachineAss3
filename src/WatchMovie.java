@@ -1,5 +1,10 @@
 public class WatchMovie implements IState {
 
+    private MovieDownloader movieDownloader;
+
+    public WatchMovie(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
 
     @Override
     public void turnOff() {

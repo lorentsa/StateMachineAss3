@@ -18,7 +18,7 @@ public class DownloadCheck implements IState {
 
     @Override
     public void internetOff() {
-        
+
     }
 
     @Override

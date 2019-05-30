@@ -1,5 +1,11 @@
 public class PauseMovie implements IState {
 
+    private MovieDownloader movieDownloader;
+
+    public PauseMovie(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void turnOff() {
 

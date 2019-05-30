@@ -26,8 +26,8 @@ public class MovieDownloader {
         downloadWaiting = new DownloadWaiting(this);
         enterQueue = new EnterQueue(this);
         handleQueueIdle = new HandleQueueIdle(this);
-        offline = new Offline(this);
-        online = new Online(this);
+        offline = new InternetOffline(this);
+        online = new InternetOnline(this);
         pauseMovie = new PauseMovie(this);
         watchingMovieIdle = new WatchingMovieIdle(this);
         watchMovie = new WatchMovie(this);

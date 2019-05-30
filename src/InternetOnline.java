@@ -1,4 +1,11 @@
-public class Offline implements IState {
+public class InternetOnline implements IState{
+
+    private MovieDownloader movieDownloader;
+
+    public InternetOnline(MovieDownloader movieDownloader) {
+        this.movieDownloader = movieDownloader;
+    }
+
     @Override
     public void internetOff() {
 
@@ -8,7 +15,6 @@ public class Offline implements IState {
     public void internetOn() {
 
     }
-
 
 
 
