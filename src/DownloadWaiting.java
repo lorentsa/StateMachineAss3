@@ -1,20 +1,19 @@
-public class DownloadWaiting extends On implements IState{
+public class DownloadWaiting implements IState{
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public DownloadWaiting(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public DownloadWaiting(On on) {
+        this.on = on;
     }
 
 
     @Override
     public void internetOn() {
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+        on.setCurrStateDownload(on.getDownloadFile());
     }
 
     @Override
     public void entry() {
-        super.entry();
         System.out.println("enter downloadWaiting state");
     }
 
@@ -25,11 +24,19 @@ public class DownloadWaiting extends On implements IState{
 
     @Override
     public void downloadAborted() {
-        movieDownloader.setPoints(-1);
-        movieDownloader.setStorage(movieDownloader.getStorage() + movieDownloader.getFileSize());
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+        on.setPoints(-1);
+        on.setStorage(on.getStorage() + on.getFileSize());
+        on.setCurrStateDownload(on.getDownloadIdle());
     }
 
+
+
+
+    //region unused
+    @Override
+    public void internetOff() {
+
+    }
     @Override
     public void turnOff() {
 
@@ -39,14 +46,6 @@ public class DownloadWaiting extends On implements IState{
     public void turnOn() {
 
     }
-
-
-    //region unused
-    @Override
-    public void internetOff() {
-
-    }
-
 
 
     @Override
