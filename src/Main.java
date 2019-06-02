@@ -7,8 +7,9 @@ public class Main {
 
         String s;
         do {
+            System.out.println("------------------------------------------------------------------------------------");
             System.out.println("\nHello User,\n" + "please choose what you want the machine to do: (press only the number of the option)\n" + "1. Turn on\n" + "2. Turn off\n" + "3. Internet on\n" + "4. Internet off\n" + "5. File request\n" + "6. Download aborted\n" + "7. Download error\n" + "8. Error fixed\n" + "9. Movie on\n" + "10. Restart movie\n" + "11. Hold movie\n" + "12. Movie off\n" + "13. Resume\n" +"14. Set storage size\n" +"15. Set file size\n" +"16. Set movie length\n" + "17. Exit\n");
-            System.out.print("Your input is:");
+            System.out.print("Your input is:\n");
             Scanner f = new Scanner(System.in);
             s = f.next();
             switch (s) {

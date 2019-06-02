@@ -6,7 +6,7 @@ public class On implements IState{
     private double speed = 1;
     private int time = 0;
     private double download = 0;
-    private double fileSize = 50;
+    private double fileSize = 30;
     private int movieLength = 30;
 
     private IState downloadCheck;

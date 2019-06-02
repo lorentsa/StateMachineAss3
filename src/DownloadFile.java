@@ -37,8 +37,8 @@ public class DownloadFile implements IState,Runnable{
             }
             //System.out.println("Download progress: " + on.getDownload()+"/"+on.getFileSize() + " units");
         }
-        if(on.getDownload() == on.getFileSize()){
-            System.out.println("Download done");
+        if(on.getDownload() >= on.getFileSize()){
+            System.out.println("Download done - " + on.getFileSize() + " units downloaded");
             on.setPoints(1);
             on.setCurrStateDownload(on.getDownloadIdle());
         }

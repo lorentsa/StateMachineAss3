@@ -33,7 +33,7 @@ public class WatchMovie implements IState,Runnable {
 
     @Override
     public void run(){
-        System.out.println("Watching from " + on.getTime() + " to " + on.getMovieLength() + " seconds");
+        //System.out.println("Watching from " + on.getTime() + " to " + on.getMovieLength() + " seconds");
         while(running.get() && on.getTime() < on.getMovieLength()){
             on.setTime(on.getTime()+1);
             try {
@@ -45,6 +45,8 @@ public class WatchMovie implements IState,Runnable {
         }
         if(on.getTime() >= on.getMovieLength())
             System.out.println("Watching done.");
+        else
+            System.out.println("Movie watched until " + on.getTime() + " seconds");
 
     }
 
