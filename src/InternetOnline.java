@@ -1,4 +1,4 @@
-public class InternetOnline implements IState{
+public class InternetOnline extends On implements IState{
 
     private MovieDownloader movieDownloader;
 
@@ -22,12 +22,7 @@ public class InternetOnline implements IState{
     }
 
 
-
-
-
-
-
-
+    //region unused
     @Override
     public void internetOn() {
 
@@ -87,4 +82,5 @@ public class InternetOnline implements IState{
     public void resume() {
 
     }
+    //endregion
 }

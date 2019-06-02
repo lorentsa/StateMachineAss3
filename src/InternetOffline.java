@@ -21,18 +21,6 @@ public class InternetOffline extends On implements IState {
         System.out.println("exit internetOffline state");
     }
 
-
-
-
-
-
-
-
-    @Override
-    public void internetOff() {
-
-    }
-
     @Override
     public void turnOn() {
 
@@ -42,6 +30,15 @@ public class InternetOffline extends On implements IState {
     public void turnOff() {
 
     }
+
+
+    //region unused
+    @Override
+    public void internetOff() {
+
+    }
+
+
 
     @Override
     public void fileRequest() {
@@ -87,4 +84,5 @@ public class InternetOffline extends On implements IState {
     public void resume() {
 
     }
+    //endregion
 }

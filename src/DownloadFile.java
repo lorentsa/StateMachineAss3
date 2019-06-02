@@ -55,6 +55,8 @@ public class DownloadFile extends On implements IState,Runnable{
         movieDownloader.setCurrStateDownload(movieDownloader.getDownloadWaiting());
     }
 
+
+    //region unused
     @Override
     public void errorFixed() {
 
@@ -106,6 +108,7 @@ public class DownloadFile extends On implements IState,Runnable{
     public void resume() {
 
     }
+    //endregion
 
 
 }

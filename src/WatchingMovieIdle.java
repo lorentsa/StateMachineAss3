@@ -26,18 +26,6 @@ public class WatchingMovieIdle extends On implements IState {
     }
 
 
-
-
-
-
-
-
-
-    @Override
-    public void movieOff() {
-
-    }
-
     @Override
     public void turnOff() {
 
@@ -47,6 +35,13 @@ public class WatchingMovieIdle extends On implements IState {
     public void turnOn() {
 
     }
+
+    //region unused
+    @Override
+    public void movieOff() {
+
+    }
+
 
     @Override
     public void internetOff() {
@@ -95,4 +90,5 @@ public class WatchingMovieIdle extends On implements IState {
     public void resume() {
 
     }
+    //endregion
 }

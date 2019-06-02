@@ -49,6 +49,7 @@ public class DownloadIdle extends On implements IState{
         super.entry();
     }
 
+    //region unused
     @Override
     public void internetOff() {
 
@@ -98,4 +99,5 @@ public class DownloadIdle extends On implements IState{
     public void resume() {
 
     }
+    //endregion
 }

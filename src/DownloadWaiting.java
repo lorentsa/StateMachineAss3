@@ -40,6 +40,8 @@ public class DownloadWaiting extends On implements IState{
 
     }
 
+
+    //region unused
     @Override
     public void internetOff() {
 
@@ -88,4 +90,5 @@ public class DownloadWaiting extends On implements IState{
     public void resume() {
 
     }
+    //endregion
 }

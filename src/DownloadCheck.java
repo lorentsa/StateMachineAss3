@@ -55,14 +55,15 @@ public class DownloadCheck extends On implements IState,Runnable {
 
     @Override
     public void turnOff() {
-        super.exit();
     }
 
     @Override
     public void turnOn() {
-        super.entry();
     }
 
+
+
+    //region unused
     @Override
     public void internetOff() {
 
@@ -117,6 +118,7 @@ public class DownloadCheck extends On implements IState,Runnable {
     public void resume() {
 
     }
+    //endregion
 
 
 }

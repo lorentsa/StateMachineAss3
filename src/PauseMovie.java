@@ -1,4 +1,4 @@
-public class PauseMovie implements IState {
+public class PauseMovie extends On implements IState {
 
     private MovieDownloader movieDownloader;
 
@@ -25,6 +25,10 @@ public class PauseMovie implements IState {
     public void turnOff() {
 
     }
+    @Override
+    public void turnOn() {
+
+    }
 
     @Override
     public void errorFixed() {
@@ -42,14 +46,7 @@ public class PauseMovie implements IState {
     }
 
 
-
-
-
-    @Override
-    public void turnOn() {
-
-    }
-
+    //region unused
     @Override
     public void internetOff() {
 
@@ -86,6 +83,7 @@ public class PauseMovie implements IState {
     public void holdMovie() {
 
     }
+    //endregion
 
 
 }

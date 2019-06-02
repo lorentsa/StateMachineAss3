@@ -44,6 +44,7 @@ public class DownloadRepair extends On implements IState,Runnable{
 
 
 
+    //region unused
     @Override
     public void turnOff() {
 
@@ -104,6 +105,7 @@ public class DownloadRepair extends On implements IState,Runnable{
     public void resume() {
 
     }
+    //endregion
 
 
 }
