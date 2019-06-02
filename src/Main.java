@@ -52,7 +52,7 @@ public class Main {
                     movieDownloader.resume();
                     break;
                 case "14":
-                    System.out.println("What is the size you what to set to the storage?");
+                    System.out.println("What is the size you want to set to the storage?");
                     String sizeOfStorage = f.next();
                     double storageSize=100;
                     try {
@@ -64,7 +64,7 @@ public class Main {
                     movieDownloader.setStorage(storageSize);
                     break;
                 case "15":
-                    System.out.println("What is the size you what to set to the file?");
+                    System.out.println("What is the size you want to set to the file?");
                     String sizeOfFile = f.next();
                     double fileSize=10;
                     try {
@@ -76,7 +76,7 @@ public class Main {
                     movieDownloader.setFileSize(fileSize);
                     break;
                 case "16":
-                    System.out.println("What is the length you what to set to the movie?");
+                    System.out.println("What is the length you want to set to the movie?");
                     String lntOfMovie = f.next();
                     int movieLnt=60;
                     try {
@@ -90,11 +90,11 @@ public class Main {
                 case "17":
                     break;
             }
-            try {
+            /*try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
         while (!s.equals("17"));
     }

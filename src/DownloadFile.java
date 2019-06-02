@@ -1,7 +1,10 @@
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class DownloadFile implements IState,Runnable{
 
     private On on;
     private Thread downloadFileThread;
+    private AtomicBoolean running  = new AtomicBoolean(true);
 
     public DownloadFile(On on) {
         this.on = on;
@@ -12,32 +15,33 @@ public class DownloadFile implements IState,Runnable{
         System.out.println("enter downloadFile state");
         on.setStorage(on.getStorage() - on.getFileSize());
         downloadFileThread = new Thread(this);
+        running.set(true);
         downloadFileThread.start();
     }
 
     @Override
     public void exit() {
         System.out.println("exit downloadFile state");
-        downloadFileThread.interrupt();
+        running.set(false);
     }
 
     @Override
     public void run() {
-        while(!Thread.interrupted() && on.getDownload() < on.getFileSize()){
+        System.out.println("Downloading from " + on.getDownload() + " to " + on.getFileSize() + " units");
+        while(running.get() && on.getDownload() < on.getFileSize()){
             on.setDownload(on.getDownload() + on.getSpeed());
             try{
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Download progress: " + on.getDownload() + "%");
+            //System.out.println("Download progress: " + on.getDownload()+"/"+on.getFileSize() + " units");
         }
         if(on.getDownload() == on.getFileSize()){
             System.out.println("Download done");
             on.setPoints(1);
             on.setCurrStateDownload(on.getDownloadIdle());
         }
-
     }
 
     @Override
@@ -111,6 +115,4 @@ public class DownloadFile implements IState,Runnable{
 
     }
     //endregion
-
-
 }

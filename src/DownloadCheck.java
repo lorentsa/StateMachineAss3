@@ -1,7 +1,10 @@
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class DownloadCheck implements IState,Runnable {
 
     private On on;
     private Thread downloadCheckThread;
+    private AtomicBoolean running  = new AtomicBoolean(true);
 
     public DownloadCheck(On on) {
         this.on = on;
@@ -22,6 +25,7 @@ public class DownloadCheck implements IState,Runnable {
             System.out.println("Storage not sufficient - first try");
             on.setChance(on.getChance() + 1);
             downloadCheckThread = new Thread(this);
+            running.set(true);
             downloadCheckThread.start();
         }
     }
@@ -29,7 +33,7 @@ public class DownloadCheck implements IState,Runnable {
     @Override
     public void exit() {
         if(on.getChance()>=1)
-            downloadCheckThread.interrupt();
+            running.set(false);
         System.out.println("exit downloadCheck state");
     }
 

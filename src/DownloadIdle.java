@@ -30,7 +30,7 @@ public class DownloadIdle implements IState{
     }
 
     private void setSpeed(int points){
-        if(points > 0 && points < 4){
+        if(points >= 0 && points < 4){
             on.setSpeed(1);
         }
         else if(points >=4 && points < 7){

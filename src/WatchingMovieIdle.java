@@ -20,9 +20,14 @@ public class WatchingMovieIdle implements IState {
 
     @Override
     public void movieOn() {
-        if(on.getCurrStateDownload() instanceof DownloadFile && (on.getDownload()/on.getFileSize()) >= 0.2){
-            on.setCurrStateWatchingMovie(on.getWatchMovie());
+        if(on.getCurrStateDownload() instanceof DownloadFile){
+            if((on.getDownload()/on.getFileSize()) >= 0.2)
+                on.setCurrStateWatchingMovie(on.getWatchMovie());
+            else
+                System.out.println("Please wait until at least 20% is downloaded");
         }
+        else
+            System.out.println("You can't watch a movie if you are not downloading it");
     }
 
     //region unused

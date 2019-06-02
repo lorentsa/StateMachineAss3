@@ -14,7 +14,7 @@ public class MovieDownloader {
     public void setCurrState(IState currState) {
         this.currState.exit();
         this.currState= currState;
-        currState.entry();
+        this.currState.entry();
     }
 
     public IState getCurrState() {

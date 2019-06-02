@@ -6,8 +6,8 @@ public class On implements IState{
     private double speed = 1;
     private int time = 0;
     private double download = 0;
-    private double fileSize = 10;
-    private int movieLength = 0;
+    private double fileSize = 50;
+    private int movieLength = 30;
 
     private IState downloadCheck;
     private IState downloadFile;
@@ -131,6 +131,7 @@ public class On implements IState{
         this.points += points;
         if(this.points < 0)
             this.points = 0;
+        System.out.println("You have " + this.points + " points");
     }
 
     public void resetDownload(){
@@ -224,39 +225,39 @@ public class On implements IState{
     }
 
     public void internetOff(){
-        currStateWatchingMovie.internetOff();
         currStateInternet.internetOff();
+        currStateWatchingMovie.internetOff();
         currStateDownload.internetOff();
     }
 
     public void internetOn(){
-        currStateWatchingMovie.internetOn();
         currStateInternet.internetOn();
+        currStateWatchingMovie.internetOn();
         currStateDownload.internetOn();
     }
 
     public void fileRequest(){
+        currStateDownload.fileRequest();
         currStateWatchingMovie.fileRequest();
         currStateInternet.fileRequest();
-        currStateDownload.fileRequest();
     }
 
     public void downloadAborted(){
+        currStateDownload.downloadAborted();
         currStateWatchingMovie.downloadAborted();
         currStateInternet.downloadAborted();
-        currStateDownload.downloadAborted();
     }
 
     public void downloadError(){
+        currStateDownload.downloadError();
         currStateWatchingMovie.downloadError();
         currStateInternet.downloadError();
-        currStateDownload.downloadError();
     }
 
     public void errorFixed(){
+        currStateDownload.errorFixed();
         currStateWatchingMovie.errorFixed();
         currStateInternet.errorFixed();
-        currStateDownload.errorFixed();
     }
 
     public void movieOn(){

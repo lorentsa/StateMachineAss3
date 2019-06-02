@@ -1,7 +1,10 @@
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class DownloadRepair implements IState,Runnable{
 
     private On on;
     private Thread downloadRepairThread;
+    private AtomicBoolean running  = new AtomicBoolean(true);
 
     public DownloadRepair(On on) {
         this.on = on;
@@ -11,12 +14,13 @@ public class DownloadRepair implements IState,Runnable{
     public void entry() {
         System.out.println("enter downloadRepair state");
         downloadRepairThread = new Thread(this);
+        running.set(true);
         downloadRepairThread.start();
     }
 
     @Override
     public void exit() {
-        downloadRepairThread.interrupt();
+        running.set(false);
         System.out.println("exit downloadRepair state");
     }
 
@@ -25,7 +29,7 @@ public class DownloadRepair implements IState,Runnable{
         try{
             System.out.println("Waiting 3 seconds");
             Thread.sleep(3000);
-            if(!Thread.interrupted()){
+            if(running.get()){
                 on.setPoints(-1);
                 on.setCurrStateDownload(on.getDownloadIdle());
             }
@@ -42,6 +46,11 @@ public class DownloadRepair implements IState,Runnable{
     }
 
 
+    @Override
+    public void errorFixed() {
+        running.set(false);
+        on.setCurrStateDownload(on.getDownloadFile());
+    }
 
 
     //region unused
@@ -76,10 +85,6 @@ public class DownloadRepair implements IState,Runnable{
 
     }
 
-    @Override
-    public void errorFixed() {
-
-    }
 
     @Override
     public void movieOn() {

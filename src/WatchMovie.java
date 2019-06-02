@@ -1,9 +1,10 @@
-import java.sql.SQLOutput;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class WatchMovie implements IState,Runnable {
 
     private On on;
     private Thread watchMovieThread;
+    private AtomicBoolean running  = new AtomicBoolean(true);
 
     public WatchMovie(On on) {
         this.on = on;
@@ -11,34 +12,40 @@ public class WatchMovie implements IState,Runnable {
 
     @Override
     public void entry() {
-        System.out.println("enter watchingMovieIdle state");
+        System.out.println("enter watchMovie state");
         System.out.println("watch movie from " + on.getTime() + " seconds");
-        watchMovieThread = new Thread();
+        watchMovieThread = new Thread(this);
+        running.set(true);
         watchMovieThread.start();
     }
 
     @Override
     public void exit() {
-        System.out.println("exit watchingMovieIdle state");
+        System.out.println("exit watchMovie state");
+        running.set(false);
     }
 
     @Override
     public void restartMovie() {
-        on.setCurrStateWatchingMovie(this);
         on.setTime(0);
+        on.setCurrStateWatchingMovie(this);
     }
 
     @Override
-    public void run() {
-        while(!Thread.interrupted() && on.getTime() < on.getMovieLength()){
+    public void run(){
+        System.out.println("Watching from " + on.getTime() + " to " + on.getMovieLength() + " seconds");
+        while(running.get() && on.getTime() < on.getMovieLength()){
             on.setTime(on.getTime()+1);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Watching " + on.getTime() + "/" + on.getMovieLength() + " seconds");
+            //System.out.println("Watching " + on.getTime() + "/" + on.getMovieLength() + " seconds");
         }
+        if(on.getTime() >= on.getMovieLength())
+            System.out.println("Watching done.");
+
     }
 
     @Override
