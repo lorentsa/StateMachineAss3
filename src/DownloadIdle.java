@@ -41,7 +41,7 @@ public class DownloadIdle implements IState{
         }
         System.out.println("Downloading in x"+on.getSpeed()+ " speed");
     }
-    
+
     //region unused
     @Override
     public void internetOff() {
