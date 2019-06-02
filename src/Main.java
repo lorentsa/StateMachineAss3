@@ -85,7 +85,7 @@ public class Main {
                     catch (Exception e){
                         System.out.println("not a number");
                     }
-                    movieDownloader.setStorage(movieLnt);
+                    movieDownloader.setMovieLength(movieLnt);
                     break;
                 case "17":
                     break;
