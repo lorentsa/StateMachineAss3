@@ -1,9 +1,41 @@
-public class WatchingMovieIdle implements IState {
+public class WatchingMovieIdle extends On implements IState {
 
     private MovieDownloader movieDownloader;
 
     public WatchingMovieIdle(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
+    }
+
+    @Override
+    public void entry() {
+        System.out.println("enter watchingMovieIdle state");
+        System.out.println("watch movie from " + movieDownloader.getTime() + "seconds");
+        movieDownloader.setTime(0);
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("exit watchingMovieIdle state");
+    }
+
+    @Override
+    public void movieOn() {
+        if(movieDownloader.getCurrStateDownload() instanceof DownloadFile && (movieDownloader.getDownload()/movieDownloader.getFileSize()) >= 0.2){
+            movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+        }
+    }
+
+
+
+
+
+
+
+
+
+    @Override
+    public void movieOff() {
+
     }
 
     @Override
@@ -46,10 +78,7 @@ public class WatchingMovieIdle implements IState {
 
     }
 
-    @Override
-    public void movieOn() {
 
-    }
 
     @Override
     public void restartMovie() {
@@ -61,10 +90,6 @@ public class WatchingMovieIdle implements IState {
 
     }
 
-    @Override
-    public void movieOff() {
-
-    }
 
     @Override
     public void resume() {

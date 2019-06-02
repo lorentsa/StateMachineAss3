@@ -8,6 +8,8 @@ public class MovieDownloader {
     private double download = 0;
     private double fileSize = 10;
 
+    private int movieLength = 0;
+
     private IState downloadCheck;
     private IState downloadFile;
     private IState downloadIdle;
@@ -38,9 +40,8 @@ public class MovieDownloader {
         watchingMovieIdle = new WatchingMovieIdle(this);
         watchMovie = new WatchMovie(this);
 
-
         currStateDownload= downloadIdle;
-        currStateInternet=  offline;
+        currStateInternet=offline;
         currStateWatchingMovie= watchingMovieIdle;
     }
 
@@ -134,6 +135,14 @@ public class MovieDownloader {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public int getMovieLength() {
+        return movieLength;
+    }
+
+    public void setMovieLength(int movieLength) {
+        this.movieLength = movieLength;
     }
 
     public double getDownload() {
