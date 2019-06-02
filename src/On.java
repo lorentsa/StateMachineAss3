@@ -30,16 +30,16 @@ public class On implements IState{
 
     public On(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
-        downloadCheck = new DownloadCheck(movieDownloader);
-        downloadFile = new DownloadFile(movieDownloader);
-        downloadIdle = new DownloadIdle(movieDownloader);
-        downloadRepair = new DownloadRepair(movieDownloader);
-        downloadWaiting = new DownloadWaiting(movieDownloader);
-        offline = new InternetOffline(movieDownloader);
-        online = new InternetOnline(movieDownloader);
-        pauseMovie = new PauseMovie(movieDownloader);
-        watchingMovieIdle = new WatchingMovieIdle(movieDownloader);
-        watchMovie = new WatchMovie(movieDownloader);
+        downloadCheck = new DownloadCheck(this);
+        downloadFile = new DownloadFile(this);
+        downloadIdle = new DownloadIdle(this);
+        downloadRepair = new DownloadRepair(this);
+        downloadWaiting = new DownloadWaiting(this);
+        offline = new InternetOffline(this);
+        online = new InternetOnline(this);
+        pauseMovie = new PauseMovie(this);
+        watchingMovieIdle = new WatchingMovieIdle(this);
+        watchMovie = new WatchMovie(this);
 
 
     }
