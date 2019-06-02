@@ -1,16 +1,16 @@
-public class DownloadIdle extends On implements IState{
+public class DownloadIdle implements IState{
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public DownloadIdle(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public DownloadIdle(On on) {
+        this.on = on;
     }
 
     @Override
     public void entry() {
-        movieDownloader.setChance(0);
-        movieDownloader.setAvailableSpace(false);
-        movieDownloader.resetDownload();
+        on.setChance(0);
+        on.setAvailableSpace(false);
+        on.resetDownload();
         System.out.println("enter downloadIdle state");
     }
 
@@ -21,32 +21,30 @@ public class DownloadIdle extends On implements IState{
 
     @Override
     public void fileRequest() {
-        if(movieDownloader.getCurrStateInternet() instanceof InternetOnline){
-            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadCheck());
-            setSpeed(movieDownloader.getPoints());
+        if(on.getCurrStateInternet() instanceof InternetOnline){
+            on.setCurrStateDownload(on.getDownloadCheck());
+            setSpeed(on.getPoints());
         }
     }
 
     private void setSpeed(int points){
         if(points > 0 && points < 4){
-            movieDownloader.setSpeed(1);
+            on.setSpeed(1);
         }
         else if(points >=4 && points < 7){
-            movieDownloader.setSpeed(1.2);
+            on.setSpeed(1.2);
         }
         else{
-            movieDownloader.setSpeed(1.5);
+            on.setSpeed(1.5);
         }
     }
 
     @Override
     public void turnOff() {
-        super.exit();
     }
 
     @Override
     public void turnOn() {
-        super.entry();
     }
 
     //region unused

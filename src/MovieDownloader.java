@@ -1,277 +1,80 @@
 public class MovieDownloader {
-    private double storage = 100;
-    private int chance = 0;
-    private boolean availableSpace = false;
-    private int points = 0;
-    private double speed = 1;
-    private int time = 0;
-    private double download = 0;
-    private double fileSize = 10;
 
-    private int movieLength = 0;
-
-    private IState downloadCheck;
-    private IState downloadFile;
-    private IState downloadIdle;
-    private IState downloadRepair;
-    private IState downloadWaiting;
-    private IState offline;
-    private IState online;
-    private IState pauseMovie;
-    private IState watchingMovieIdle;
-    private IState watchMovie;
     private IState off;
+    private IState on;
 
-   private IState currStateWatchingMovie;
-   private IState currStateDownload;
-   private IState currStateInternet;
-   private IState currStateSuper;
+    private IState currState;
 
 
     public MovieDownloader(){
-        downloadCheck = new DownloadCheck(this);
-        downloadFile = new DownloadFile(this);
-        downloadIdle = new DownloadIdle(this);
-        downloadRepair = new DownloadRepair(this);
-        downloadWaiting = new DownloadWaiting(this);
-        offline = new InternetOffline(this);
-        online = new InternetOnline(this);
-        pauseMovie = new PauseMovie(this);
-        watchingMovieIdle = new WatchingMovieIdle(this);
-        watchMovie = new WatchMovie(this);
         off = new Off(this);
+        on = new On(this);
 
-        currStateSuper = off;
+        currState = off;
         off.entry();
-        currStateDownload= downloadIdle;
-        currStateInternet=offline;
-        currStateWatchingMovie= watchingMovieIdle;
     }
 
-    public void setCurrStateWatchingMovie(IState currStateWatchingMovie) {
-        currStateWatchingMovie.exit();
-        this.currStateWatchingMovie = currStateWatchingMovie;
-        currStateWatchingMovie.entry();
+    public void setCurrState(IState currState) {
+        currState.exit();
+        this.currState= currState;
+        currState.entry();
     }
 
-    public void setCurrStateDownload(IState currStateDownload) {
-        currStateDownload.exit();
-        this.currStateDownload = currStateDownload;
-        currStateDownload.entry();
+    public IState getCurrState() {
+        return currState;
     }
 
-    public void setCurrStateInternet(IState currStateInternet) {
-        currStateInternet.exit();
-        this.currStateInternet = currStateInternet;
-        currStateInternet.entry();
-    }
-
-    public IState getCurrStateWatchingMovie() {
-        return currStateWatchingMovie;
-    }
-
-    public IState getCurrStateDownload() {
-        return currStateDownload;
-    }
-
-    public IState getCurrStateInternet() {
-        return currStateInternet;
-    }
-
-    public double getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(double fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public double getStorage() {
-        return storage;
-    }
-
-    public void setStorage(double storage) {
-        this.storage = storage;
-    }
-
-    public int getChance() {
-        return chance;
-    }
-
-    public void setChance(int chance) {
-        this.chance = chance;
-    }
-
-    public boolean isAvailableSpace() {
-        return availableSpace;
-    }
-
-    public void setAvailableSpace(boolean availableSpace) {
-        this.availableSpace = availableSpace;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points += points;
-        if(this.points < 0)
-            this.points = 0;
-    }
-
-    public void resetDownload(){
-        this.download = 0;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public int getMovieLength() {
-        return movieLength;
-    }
-
-    public void setMovieLength(int movieLength) {
-        this.movieLength = movieLength;
-    }
-
-    public double getDownload() {
-        return download;
-    }
-
-    public void setDownload(double download) {
-        this.download = download;
-    }
-
-    public IState getDownloadCheck() {
-        return downloadCheck;
-    }
-
-    public IState getDownloadFile() {
-        return downloadFile;
-    }
-
-    public IState getDownloadIdle() {
-        return downloadIdle;
-    }
-
-    public IState getDownloadRepair() {
-        return downloadRepair;
-    }
-
-    public IState getDownloadWaiting() {
-        return downloadWaiting;
-    }
-
-    public IState getOffline() {
-        return offline;
-    }
-
-    public IState getOnline() {
-        return online;
-    }
-
-    public IState getPauseMovie() {
-        return pauseMovie;
-    }
-
-    public IState getWatchingMovieIdle() {
-        return watchingMovieIdle;
-    }
-
-    public IState getWatchMovie() {
-        return watchMovie;
-    }
 
 
     public void turnOff(){
-        currStateWatchingMovie.turnOff();
-        currStateInternet.turnOff();
-        currStateDownload.turnOff();
+        currState.turnOff();
     }
 
     public void turnOn(){
-        currStateWatchingMovie.turnOn();
-        currStateInternet.turnOn();
-        currStateDownload.turnOn();
+        currState.turnOn();
     }
 
     public void internetOff(){
-        currStateWatchingMovie.internetOff();
-        currStateInternet.internetOff();
-        currStateDownload.internetOff();
+        currState.internetOff();
     }
 
     public void internetOn(){
-        currStateWatchingMovie.internetOn();
-        currStateInternet.internetOn();
-        currStateDownload.internetOn();
+        currState.internetOn();
     }
 
     public void fileRequest(){
-        currStateWatchingMovie.fileRequest();
-        currStateInternet.fileRequest();
-        currStateDownload.fileRequest();
+        currState.fileRequest();
     }
 
     public void downloadAborted(){
-        currStateWatchingMovie.downloadAborted();
-        currStateInternet.downloadAborted();
-        currStateDownload.downloadAborted();
+        currState.downloadAborted();
     }
 
     public void downloadError(){
-        currStateWatchingMovie.downloadError();
-        currStateInternet.downloadError();
-        currStateDownload.downloadError();
+        currState.downloadError();
     }
 
     public void errorFixed(){
-        currStateWatchingMovie.errorFixed();
-        currStateInternet.errorFixed();
-        currStateDownload.errorFixed();
+        currState.errorFixed();
     }
 
     public void movieOn(){
-        currStateWatchingMovie.movieOn();
-        currStateInternet.movieOn();
-        currStateDownload.movieOn();
+        currState.movieOn();
     }
 
     public void restartMovie(){
-        currStateWatchingMovie.restartMovie();
-        currStateInternet.restartMovie();
-        currStateDownload.restartMovie();
+        currState.restartMovie();
     }
 
     public void holdMovie(){
-        currStateWatchingMovie.holdMovie();
-        currStateInternet.holdMovie();
-        currStateDownload.holdMovie();
+        currState.holdMovie();
     }
 
     public void movieOff(){
-        currStateWatchingMovie.movieOff();
-        currStateInternet.movieOff();
-        currStateDownload.movieOff();
+        currState.movieOff();
     }
 
     public void resume(){
-        currStateWatchingMovie.resume();
-        currStateInternet.resume();
-        currStateDownload.resume();
+        currState.resume();
     }
 }

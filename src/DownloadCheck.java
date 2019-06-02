@@ -1,4 +1,4 @@
-public class DownloadCheck extends On implements IState,Runnable {
+public class DownloadCheck implements IState,Runnable {
 
     private MovieDownloader movieDownloader;
     private Thread downloadCheckThread;
