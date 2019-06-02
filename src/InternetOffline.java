@@ -1,14 +1,14 @@
-public class InternetOffline extends On implements IState {
+public class InternetOffline implements IState {
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public InternetOffline(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public InternetOffline(On on) {
+        this.on = on;
     }
 
     @Override
     public void internetOn() {
-        movieDownloader.setCurrStateInternet(movieDownloader.getOnline());
+        on.setCurrStateInternet(on.getOnline());
     }
 
     @Override
@@ -21,6 +21,8 @@ public class InternetOffline extends On implements IState {
         System.out.println("exit internetOffline state");
     }
 
+
+    //region unused
     @Override
     public void turnOn() {
 
@@ -30,9 +32,6 @@ public class InternetOffline extends On implements IState {
     public void turnOff() {
 
     }
-
-
-    //region unused
     @Override
     public void internetOff() {
 
