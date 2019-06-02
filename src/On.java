@@ -59,19 +59,19 @@ public class On implements IState{
 
 
     public void setCurrStateWatchingMovie(IState currStateWatchingMovie) {
-        currStateWatchingMovie.exit();
+        this.currStateWatchingMovie.exit();
         this.currStateWatchingMovie = currStateWatchingMovie;
         currStateWatchingMovie.entry();
     }
 
     public void setCurrStateDownload(IState currStateDownload) {
-        currStateDownload.exit();
+        this.currStateDownload.exit();
         this.currStateDownload = currStateDownload;
         currStateDownload.entry();
     }
 
     public void setCurrStateInternet(IState currStateInternet) {
-        currStateInternet.exit();
+        this.currStateInternet.exit();
         this.currStateInternet = currStateInternet;
         currStateInternet.entry();
     }
