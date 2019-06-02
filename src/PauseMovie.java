@@ -22,15 +22,6 @@ public class PauseMovie implements IState {
     }
 
     @Override
-    public void turnOff() {
-
-    }
-    @Override
-    public void turnOn() {
-
-    }
-
-    @Override
     public void errorFixed() {
         on.setCurrStateWatchingMovie(on.getWatchMovie());
     }
@@ -47,6 +38,16 @@ public class PauseMovie implements IState {
 
 
     //region unused
+
+    @Override
+    public void turnOff() {
+
+    }
+    @Override
+    public void turnOn() {
+
+    }
+    
     @Override
     public void internetOff() {
 
@@ -82,5 +83,6 @@ public class PauseMovie implements IState {
     @Override
     public void holdMovie() {
 
-    }//endregion
+    }
+    //endregion
 }
