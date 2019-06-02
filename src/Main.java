@@ -54,6 +54,11 @@ public class Main {
                 case "17":
                     break;
             }
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         while (!s.equals("17"));
     }
