@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class WatchMovie implements IState,Runnable {
 
     private On on;
@@ -35,6 +37,7 @@ public class WatchMovie implements IState,Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("Watching " + on.getTime() + "/" + on.getMovieLength() + " seconds");
         }
     }
 
@@ -52,6 +55,8 @@ public class WatchMovie implements IState,Runnable {
     public void internetOff() {
         on.setCurrStateWatchingMovie(on.getPauseMovie());
     }
+
+
 
     //region unused
     @Override

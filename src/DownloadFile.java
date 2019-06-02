@@ -30,8 +30,10 @@ public class DownloadFile implements IState,Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("Download progress: " + on.getDownload() + "%");
         }
         if(on.getDownload() == on.getFileSize()){
+            System.out.println("Download done");
             on.setPoints(1);
             on.setCurrStateDownload(on.getDownloadIdle());
         }

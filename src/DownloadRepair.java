@@ -23,6 +23,7 @@ public class DownloadRepair implements IState,Runnable{
     @Override
     public void run() {
         try{
+            System.out.println("Waiting 3 seconds");
             Thread.sleep(3000);
             if(!Thread.interrupted()){
                 on.setPoints(-1);
