@@ -52,6 +52,7 @@ public class WatchMovie implements IState,Runnable {
         on.setCurrStateWatchingMovie(on.getPauseMovie());
     }
 
+    //region unused
     @Override
     public void turnOff() {
 
@@ -62,7 +63,6 @@ public class WatchMovie implements IState,Runnable {
 
     }
 
-    //region unused
     @Override
     public void internetOn() {
 

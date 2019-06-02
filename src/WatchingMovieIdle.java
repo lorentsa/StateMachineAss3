@@ -25,7 +25,7 @@ public class WatchingMovieIdle implements IState {
         }
     }
 
-
+    //region unused
     @Override
     public void turnOff() {
 
@@ -36,7 +36,6 @@ public class WatchingMovieIdle implements IState {
 
     }
 
-    //region unused
     @Override
     public void movieOff() {
 
