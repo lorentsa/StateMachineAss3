@@ -1,9 +1,62 @@
-public class DownloadFile implements IState{
+public class DownloadFile extends On implements IState,Runnable{
 
     private MovieDownloader movieDownloader;
+    private Thread downloadFileThread;
 
     public DownloadFile(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
+    }
+
+    @Override
+    public void entry() {
+        super.entry();
+        System.out.println("enter downloadFile state");
+        downloadFileThread = new Thread(this);
+        downloadFileThread.start();
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("exit downloadFile state");
+        downloadFileThread.interrupt();
+    }
+
+    @Override
+    public void run() {
+        while(!Thread.interrupted() && movieDownloader.getDownload() < movieDownloader.getFileSize()){
+            movieDownloader.setDownload(movieDownloader.getDownload() + movieDownloader.getSpeed());
+            try{
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(movieDownloader.getDownload() == movieDownloader.getFileSize()){
+            movieDownloader.setPoints(1);
+            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+        }
+
+    }
+
+    @Override
+    public void downloadAborted() {
+        movieDownloader.setPoints(-1);
+        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+    }
+
+    @Override
+    public void downloadError() {
+        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadRepair());
+    }
+
+    @Override
+    public void internetOff() {
+        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadWaiting());
+    }
+
+    @Override
+    public void errorFixed() {
+
     }
 
     @Override
@@ -16,10 +69,7 @@ public class DownloadFile implements IState{
 
     }
 
-    @Override
-    public void internetOff() {
 
-    }
 
     @Override
     public void internetOn() {
@@ -28,21 +78,6 @@ public class DownloadFile implements IState{
 
     @Override
     public void fileRequest() {
-
-    }
-
-    @Override
-    public void downloadAborted() {
-
-    }
-
-    @Override
-    public void downloadError() {
-
-    }
-
-    @Override
-    public void errorFixed() {
 
     }
 
@@ -70,4 +105,6 @@ public class DownloadFile implements IState{
     public void resume() {
 
     }
+
+
 }

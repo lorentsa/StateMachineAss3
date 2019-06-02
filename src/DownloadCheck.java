@@ -1,9 +1,56 @@
-public class DownloadCheck implements IState {
+public class DownloadCheck extends On implements IState,Runnable {
 
     private MovieDownloader movieDownloader;
+    private Thread downloadCheckThread;
 
     public DownloadCheck(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
+    }
+
+    @Override
+    public void entry() {
+        super.entry();
+        System.out.println("enter downloadCheck state");
+        doCheck();
+    }
+
+    private void doCheck() {
+        if(movieDownloader.getFileSize() < movieDownloader.getStorage()){
+            movieDownloader.setAvailableSpace(true);
+            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+        }
+        else{
+            movieDownloader.setChance(movieDownloader.getChance() + 1);
+            downloadCheckThread = new Thread(this);
+            downloadCheckThread.start();
+        }
+    }
+
+    @Override
+    public void exit() {
+        if(movieDownloader.getChance()>=1)
+            downloadCheckThread.interrupt();
+        System.out.println("exit downloadCheck state");
+    }
+
+    @Override
+    public void run() {
+        if(!Thread.interrupted()){
+            try{
+                Thread.sleep(4000);
+                if(movieDownloader.getFileSize() < movieDownloader.getStorage()){
+                    movieDownloader.setAvailableSpace(true);
+                    movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+                }
+                else{
+                    movieDownloader.setChance(movieDownloader.getChance() + 1);
+                    movieDownloader.setPoints(-1);
+                    movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -70,4 +117,6 @@ public class DownloadCheck implements IState {
     public void resume() {
 
     }
+
+
 }

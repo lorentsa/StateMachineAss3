@@ -1,24 +1,50 @@
-public class DownloadIdle implements IState{
+public class DownloadIdle extends On implements IState{
 
-    private int chance;
-    private boolean freeStorage;
     private MovieDownloader movieDownloader;
 
     public DownloadIdle(MovieDownloader movieDownloader) {
-        chance = 0;
-        freeStorage = false;
         this.movieDownloader = movieDownloader;
     }
 
     @Override
-    public void turnOff() {
-
+    public void entry() {
+        super.entry();
+        movieDownloader.setChance(0);
+        movieDownloader.setAvailableSpace(false);
+        movieDownloader.resetDownload();
+        System.out.println("enter downloadIdle state");
     }
 
     @Override
-    public void turnOn() {
-
+    public void exit() {
+        System.out.println("exit downloadIdle state");
     }
+
+    @Override
+    public void fileRequest() {
+        if(movieDownloader.getCurrStateInternet() instanceof InternetOnline){
+            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadCheck());
+            setSpeed(movieDownloader.getPoints());
+        }
+    }
+
+    private void setSpeed(int points){
+        if(points > 0 && points < 4){
+            movieDownloader.setSpeed(1);
+        }
+        else if(points >=4 && points < 7){
+            movieDownloader.setSpeed(1.2);
+        }
+        else{
+            movieDownloader.setSpeed(1.5);
+        }
+    }
+
+    @Override
+    public void turnOff() {}
+
+    @Override
+    public void turnOn() {}
 
     @Override
     public void internetOff() {
@@ -27,11 +53,6 @@ public class DownloadIdle implements IState{
 
     @Override
     public void internetOn() {
-
-    }
-
-    @Override
-    public void fileRequest() {
 
     }
 

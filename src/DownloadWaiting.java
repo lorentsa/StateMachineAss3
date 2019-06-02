@@ -6,6 +6,12 @@ public class DownloadWaiting implements IState{
         this.movieDownloader = movieDownloader;
     }
 
+
+    @Override
+    public void internetOn() {
+        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+    }
+
     @Override
     public void turnOff() {
 
@@ -21,10 +27,7 @@ public class DownloadWaiting implements IState{
 
     }
 
-    @Override
-    public void internetOn() {
 
-    }
 
     @Override
     public void fileRequest() {

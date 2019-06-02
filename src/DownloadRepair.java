@@ -1,9 +1,36 @@
-public class DownloadRepair implements IState{
+public class DownloadRepair extends On implements IState,Runnable{
 
     private MovieDownloader movieDownloader;
+    private Thread downloadRepairThread;
 
     public DownloadRepair(MovieDownloader movieDownloader) {
         this.movieDownloader = movieDownloader;
+    }
+
+    @Override
+    public void entry() {
+        super.entry();
+        System.out.println("enter downloadRepair state");
+        downloadRepairThread = new Thread(this);
+        downloadRepairThread.start();
+    }
+
+    @Override
+    public void exit() {
+        downloadRepairThread.interrupt();
+        System.out.println("exit downloadRepair state");
+    }
+
+    @Override
+    public void run() {
+        try{
+            Thread.sleep(3000);
+            if(!Thread.interrupted()){
+
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -70,4 +97,6 @@ public class DownloadRepair implements IState{
     public void resume() {
 
     }
+
+
 }
