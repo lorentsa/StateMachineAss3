@@ -1,15 +1,14 @@
-public class DownloadRepair extends On implements IState,Runnable{
+public class DownloadRepair implements IState,Runnable{
 
-    private MovieDownloader movieDownloader;
+    private On on;
     private Thread downloadRepairThread;
 
-    public DownloadRepair(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public DownloadRepair(On on) {
+        this.on = on;
     }
 
     @Override
     public void entry() {
-        super.entry();
         System.out.println("enter downloadRepair state");
         downloadRepairThread = new Thread(this);
         downloadRepairThread.start();
@@ -26,8 +25,8 @@ public class DownloadRepair extends On implements IState,Runnable{
         try{
             Thread.sleep(3000);
             if(!Thread.interrupted()){
-                movieDownloader.setPoints(-1);
-                movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+                on.setPoints(-1);
+                on.setCurrStateDownload(on.getDownloadIdle());
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -36,9 +35,9 @@ public class DownloadRepair extends On implements IState,Runnable{
 
     @Override
     public void downloadAborted() {
-        movieDownloader.setPoints(-1);
-        movieDownloader.setStorage(movieDownloader.getStorage() + movieDownloader.getFileSize());
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+        on.setPoints(-1);
+        on.setStorage(on.getStorage() + on.getFileSize());
+        on.setCurrStateDownload(on.getDownloadIdle());
     }
 
 

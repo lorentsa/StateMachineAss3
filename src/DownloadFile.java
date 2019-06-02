@@ -1,16 +1,16 @@
-public class DownloadFile extends On implements IState,Runnable{
+public class DownloadFile implements IState,Runnable{
 
-    private MovieDownloader movieDownloader;
+    private On on;
     private Thread downloadFileThread;
 
-    public DownloadFile(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public DownloadFile(On on) {
+        this.on = on;
     }
 
     @Override
     public void entry() {
         System.out.println("enter downloadFile state");
-        movieDownloader.setStorage(movieDownloader.getStorage() - movieDownloader.getFileSize());
+        on.setStorage(on.getStorage() - on.getFileSize());
         downloadFileThread = new Thread(this);
         downloadFileThread.start();
     }
@@ -23,36 +23,36 @@ public class DownloadFile extends On implements IState,Runnable{
 
     @Override
     public void run() {
-        while(!Thread.interrupted() && movieDownloader.getDownload() < movieDownloader.getFileSize()){
-            movieDownloader.setDownload(movieDownloader.getDownload() + movieDownloader.getSpeed());
+        while(!Thread.interrupted() && on.getDownload() < on.getFileSize()){
+            on.setDownload(on.getDownload() + on.getSpeed());
             try{
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        if(movieDownloader.getDownload() == movieDownloader.getFileSize()){
-            movieDownloader.setPoints(1);
-            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+        if(on.getDownload() == on.getFileSize()){
+            on.setPoints(1);
+            on.setCurrStateDownload(on.getDownloadIdle());
         }
 
     }
 
     @Override
     public void downloadAborted() {
-        movieDownloader.setPoints(-1);
-        movieDownloader.setStorage(movieDownloader.getStorage() + movieDownloader.getFileSize());
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+        on.setPoints(-1);
+        on.setStorage(on.getStorage() + on.getFileSize());
+        on.setCurrStateDownload(on.getDownloadIdle());
     }
 
     @Override
     public void downloadError() {
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadRepair());
+        on.setCurrStateDownload(on.getDownloadRepair());
     }
 
     @Override
     public void internetOff() {
-        movieDownloader.setCurrStateDownload(movieDownloader.getDownloadWaiting());
+        on.setCurrStateDownload(on.getDownloadWaiting());
     }
 
 

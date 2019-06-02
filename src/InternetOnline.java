@@ -1,14 +1,14 @@
-public class InternetOnline extends On implements IState{
+public class InternetOnline implements IState{
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public InternetOnline(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public InternetOnline(On on) {
+        this.on = on;
     }
 
     @Override
     public void internetOff() {
-        movieDownloader.setCurrStateInternet(movieDownloader.getOffline());
+        on.setCurrStateInternet(on.getOffline());
     }
 
     @Override

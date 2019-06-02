@@ -39,18 +39,19 @@ public class DownloadIdle implements IState{
         }
     }
 
+
+    //region unused
+    @Override
+    public void internetOff() {
+
+    }
+
     @Override
     public void turnOff() {
     }
 
     @Override
     public void turnOn() {
-    }
-
-    //region unused
-    @Override
-    public void internetOff() {
-
     }
 
     @Override

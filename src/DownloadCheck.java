@@ -1,10 +1,10 @@
 public class DownloadCheck implements IState,Runnable {
 
-    private MovieDownloader movieDownloader;
+    private On on;
     private Thread downloadCheckThread;
 
-    public DownloadCheck(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public DownloadCheck(On on) {
+        this.on = on;
     }
 
     @Override
@@ -14,12 +14,12 @@ public class DownloadCheck implements IState,Runnable {
     }
 
     private void doCheck() {
-        if(movieDownloader.getFileSize() < movieDownloader.getStorage()){
-            movieDownloader.setAvailableSpace(true);
-            movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+        if(on.getFileSize() < on.getStorage()){
+            on.setAvailableSpace(true);
+            on.setCurrStateDownload(on.getDownloadFile());
         }
         else{
-            movieDownloader.setChance(movieDownloader.getChance() + 1);
+            on.setChance(on.getChance() + 1);
             downloadCheckThread = new Thread(this);
             downloadCheckThread.start();
         }
@@ -27,7 +27,7 @@ public class DownloadCheck implements IState,Runnable {
 
     @Override
     public void exit() {
-        if(movieDownloader.getChance()>=1)
+        if(on.getChance()>=1)
             downloadCheckThread.interrupt();
         System.out.println("exit downloadCheck state");
     }
@@ -38,19 +38,27 @@ public class DownloadCheck implements IState,Runnable {
             try{
                 System.out.println("waiting 4 seconds");
                 Thread.sleep(4000);
-                if(movieDownloader.getFileSize() < movieDownloader.getStorage()){
-                    movieDownloader.setAvailableSpace(true);
-                    movieDownloader.setCurrStateDownload(movieDownloader.getDownloadFile());
+                if(on.getFileSize() < on.getStorage()){
+                    on.setAvailableSpace(true);
+                    on.setCurrStateDownload(on.getDownloadFile());
                 }
                 else{
-                    movieDownloader.setChance(movieDownloader.getChance() + 1);
-                    movieDownloader.setPoints(-1);
-                    movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
+                    on.setChance(on.getChance() + 1);
+                    on.setPoints(-1);
+                    on.setCurrStateDownload(on.getDownloadIdle());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+
+
+    //region unused
+    @Override
+    public void internetOff() {
+
     }
 
     @Override
@@ -61,13 +69,6 @@ public class DownloadCheck implements IState,Runnable {
     public void turnOn() {
     }
 
-
-
-    //region unused
-    @Override
-    public void internetOff() {
-
-    }
 
     @Override
     public void internetOn() {
