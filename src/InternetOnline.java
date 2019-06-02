@@ -8,18 +8,30 @@ public class InternetOnline implements IState{
 
     @Override
     public void internetOff() {
-
+        movieDownloader.setCurrStateInternet(movieDownloader.getOffline());
     }
+
+    @Override
+    public void entry() {
+        System.out.println("enter internetOnline state");
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("exit internetOnline state");
+    }
+
+
+
+
+
+
+
 
     @Override
     public void internetOn() {
 
     }
-
-
-
-
-
 
     @Override
     public void turnOn() {

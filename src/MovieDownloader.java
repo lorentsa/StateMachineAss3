@@ -21,9 +21,9 @@ public class MovieDownloader {
     private IState on;
     private IState off;
 
-   private IState currStateWatchingMovie;
-   private IState currStateDownload;
-   private IState currStateInternet;
+    private IState currStateWatchingMovie;
+    private IState currStateDownload;
+    private IState currStateInternet;
 
 
     public MovieDownloader(){
