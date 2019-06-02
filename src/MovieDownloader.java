@@ -93,4 +93,16 @@ public class MovieDownloader {
     public void resume(){
         currState.resume();
     }
+
+    public void setMovieLength(int movieLength) {
+        ((On)(on)).setMovieLength(movieLength);
+    }
+
+    public void setFileSize(double fileSize) {
+        ((On)(on)).setFileSize(fileSize);
+    }
+
+    public void setStorage(double storage) {
+        ((On)(on)).setStorage(storage);
+    }
 }

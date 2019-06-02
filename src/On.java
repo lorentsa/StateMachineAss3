@@ -1,5 +1,4 @@
 public class On implements IState{
-
     private double storage = 100;
     private int chance = 0;
     private boolean availableSpace = false;
@@ -8,7 +7,6 @@ public class On implements IState{
     private int time = 0;
     private double download = 0;
     private double fileSize = 10;
-
     private int movieLength = 0;
 
     private IState downloadCheck;
@@ -41,15 +39,17 @@ public class On implements IState{
         watchingMovieIdle = new WatchingMovieIdle(this);
         watchMovie = new WatchMovie(this);
 
-
+        currStateDownload=downloadIdle;
+        currStateInternet=offline;
+        currStateWatchingMovie=watchingMovieIdle;
     }
 
     @Override
     public void entry() {
         System.out.println("enter on state");
-        currStateDownload= downloadIdle;
-        currStateInternet=offline;
-        currStateWatchingMovie= watchingMovieIdle;
+        currStateDownload.entry();
+        currStateInternet.entry();
+        currStateWatchingMovie.entry();
     }
 
     @Override
@@ -61,19 +61,22 @@ public class On implements IState{
     public void setCurrStateWatchingMovie(IState currStateWatchingMovie) {
         this.currStateWatchingMovie.exit();
         this.currStateWatchingMovie = currStateWatchingMovie;
-        currStateWatchingMovie.entry();
+        this.currStateWatchingMovie.entry();
     }
 
     public void setCurrStateDownload(IState currStateDownload) {
         this.currStateDownload.exit();
         this.currStateDownload = currStateDownload;
-        currStateDownload.entry();
+        this.currStateDownload.entry();
+        if(currStateDownload instanceof DownloadIdle)
+            setCurrStateWatchingMovie(getWatchingMovieIdle());
+
     }
 
     public void setCurrStateInternet(IState currStateInternet) {
         this.currStateInternet.exit();
         this.currStateInternet = currStateInternet;
-        currStateInternet.entry();
+        this.currStateInternet.entry();
     }
 
     public IState getCurrStateWatchingMovie() {

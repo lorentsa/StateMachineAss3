@@ -10,6 +10,7 @@ public class WatchMovie implements IState,Runnable {
     @Override
     public void entry() {
         System.out.println("enter watchingMovieIdle state");
+        System.out.println("watch movie from " + on.getTime() + " seconds");
         watchMovieThread = new Thread();
         watchMovieThread.start();
     }

@@ -9,7 +9,7 @@ public class WatchingMovieIdle implements IState {
     @Override
     public void entry() {
         System.out.println("enter watchingMovieIdle state");
-        System.out.println("watch movie from " + on.getTime() + "seconds");
+
         on.setTime(0);
     }
 

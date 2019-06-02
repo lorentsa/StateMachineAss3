@@ -12,7 +12,6 @@ public class DownloadIdle implements IState{
         on.setAvailableSpace(false);
         on.resetDownload();
         System.out.println("enter downloadIdle state");
-        on.setCurrStateWatchingMovie(on.getWatchingMovieIdle());
     }
 
     @Override
@@ -26,6 +25,8 @@ public class DownloadIdle implements IState{
             on.setCurrStateDownload(on.getDownloadCheck());
             setSpeed(on.getPoints());
         }
+        else
+            System.out.println("Download not available - internet is offline");
     }
 
     private void setSpeed(int points){
@@ -38,9 +39,9 @@ public class DownloadIdle implements IState{
         else{
             on.setSpeed(1.5);
         }
+        System.out.println("Downloading in x"+on.getSpeed()+ " speed");
     }
-
-
+    
     //region unused
     @Override
     public void internetOff() {

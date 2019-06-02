@@ -19,6 +19,7 @@ public class DownloadCheck implements IState,Runnable {
             on.setCurrStateDownload(on.getDownloadFile());
         }
         else{
+            System.out.println("Storage not sufficient - first try");
             on.setChance(on.getChance() + 1);
             downloadCheckThread = new Thread(this);
             downloadCheckThread.start();
@@ -43,6 +44,7 @@ public class DownloadCheck implements IState,Runnable {
                     on.setCurrStateDownload(on.getDownloadFile());
                 }
                 else{
+                    System.out.println("Storage not sufficient - second try");
                     on.setChance(on.getChance() + 1);
                     on.setPoints(-1);
                     on.setCurrStateDownload(on.getDownloadIdle());
