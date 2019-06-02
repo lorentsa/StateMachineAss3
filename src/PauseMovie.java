@@ -47,7 +47,7 @@ public class PauseMovie implements IState {
     public void turnOn() {
 
     }
-    
+
     @Override
     public void internetOff() {
 
