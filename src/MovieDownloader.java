@@ -1,17 +1,12 @@
 public class MovieDownloader {
 
-
-
     private IState off;
     private IState on;
-
     private IState currState;
-
 
     public MovieDownloader(){
         off = new Off(this);
         on = new On(this);
-
         currState = off;
         off.entry();
     }
