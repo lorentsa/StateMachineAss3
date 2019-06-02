@@ -12,6 +12,7 @@ public class DownloadIdle implements IState{
         on.setAvailableSpace(false);
         on.resetDownload();
         System.out.println("enter downloadIdle state");
+        on.setCurrStateWatchingMovie(on.getWatchingMovieIdle());
     }
 
     @Override

@@ -1,5 +1,7 @@
 public class MovieDownloader {
 
+
+
     private IState off;
     private IState on;
 
@@ -24,7 +26,21 @@ public class MovieDownloader {
         return currState;
     }
 
+    public IState getOff() {
+        return off;
+    }
 
+    public void setOff(IState off) {
+        this.off = off;
+    }
+
+    public IState getOn() {
+        return on;
+    }
+
+    public void setOn(IState on) {
+        this.on = on;
+    }
 
     public void turnOff(){
         currState.turnOff();

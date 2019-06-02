@@ -208,9 +208,10 @@ public class On implements IState{
 
 
     public void turnOff(){
-        currStateWatchingMovie.turnOff();
-        currStateInternet.turnOff();
-        currStateDownload.turnOff();
+        currStateWatchingMovie.exit();
+        currStateInternet.exit();
+        currStateDownload.exit();
+        movieDownloader.setCurrState(movieDownloader.getOff());
     }
 
     public void turnOn(){

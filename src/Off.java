@@ -17,17 +17,20 @@ public class Off implements IState {
     }
 
     @Override
-    public void turnOff() {
-
-    }
-
-    @Override
     public void turnOn() {
-
+        movieDownloader.setCurrState(movieDownloader.getOn());
     }
 
+
+
+    //region unused
     @Override
     public void internetOff() {
+
+    }
+
+    @Override
+    public void turnOff() {
 
     }
 
@@ -80,4 +83,5 @@ public class Off implements IState {
     public void resume() {
 
     }
+    //endregion
 }
