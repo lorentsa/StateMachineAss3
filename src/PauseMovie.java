@@ -1,9 +1,9 @@
-public class PauseMovie extends On implements IState {
+public class PauseMovie implements IState {
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public PauseMovie(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public PauseMovie(On on) {
+        this.on = on;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class PauseMovie extends On implements IState {
 
     @Override
     public void internetOn() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+        on.setCurrStateWatchingMovie(on.getWatchMovie());
     }
 
     @Override
@@ -32,17 +32,17 @@ public class PauseMovie extends On implements IState {
 
     @Override
     public void errorFixed() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+        on.setCurrStateWatchingMovie(on.getWatchMovie());
     }
 
     @Override
     public void resume() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+        on.setCurrStateWatchingMovie(on.getWatchMovie());
     }
 
     @Override
     public void movieOff() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchingMovieIdle());
+        on.setCurrStateWatchingMovie(on.getWatchingMovieIdle());
     }
 
 
@@ -82,8 +82,5 @@ public class PauseMovie extends On implements IState {
     @Override
     public void holdMovie() {
 
-    }
-    //endregion
-
-
+    }//endregion
 }

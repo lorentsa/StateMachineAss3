@@ -1,10 +1,10 @@
 public class WatchMovie implements IState,Runnable {
 
-    private MovieDownloader movieDownloader;
+    private On on;
     private Thread watchMovieThread;
 
-    public WatchMovie(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public WatchMovie(On on) {
+        this.on = on;
     }
 
     @Override
@@ -21,14 +21,14 @@ public class WatchMovie implements IState,Runnable {
 
     @Override
     public void restartMovie() {
-        movieDownloader.setCurrStateWatchingMovie(this);
-        movieDownloader.setTime(0);
+        on.setCurrStateWatchingMovie(this);
+        on.setTime(0);
     }
 
     @Override
     public void run() {
-        while(!Thread.interrupted() && movieDownloader.getTime() < movieDownloader.getMovieLength()){
-            movieDownloader.setTime(movieDownloader.getTime()+1);
+        while(!Thread.interrupted() && on.getTime() < on.getMovieLength()){
+            on.setTime(on.getTime()+1);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -39,17 +39,17 @@ public class WatchMovie implements IState,Runnable {
 
     @Override
     public void holdMovie() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getPauseMovie());
+        on.setCurrStateWatchingMovie(on.getPauseMovie());
     }
 
     @Override
     public void downloadError() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getPauseMovie());
+        on.setCurrStateWatchingMovie(on.getPauseMovie());
     }
 
     @Override
     public void internetOff() {
-        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getPauseMovie());
+        on.setCurrStateWatchingMovie(on.getPauseMovie());
     }
 
     @Override
@@ -77,8 +77,6 @@ public class WatchMovie implements IState,Runnable {
     public void downloadAborted() {
 
     }
-
-
 
     @Override
     public void errorFixed() {

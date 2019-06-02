@@ -1,16 +1,16 @@
-public class WatchingMovieIdle extends On implements IState {
+public class WatchingMovieIdle implements IState {
 
-    private MovieDownloader movieDownloader;
+    private On on;
 
-    public WatchingMovieIdle(MovieDownloader movieDownloader) {
-        this.movieDownloader = movieDownloader;
+    public WatchingMovieIdle(On on) {
+        this.on = on;
     }
 
     @Override
     public void entry() {
         System.out.println("enter watchingMovieIdle state");
-        System.out.println("watch movie from " + movieDownloader.getTime() + "seconds");
-        movieDownloader.setTime(0);
+        System.out.println("watch movie from " + on.getTime() + "seconds");
+        on.setTime(0);
     }
 
     @Override
@@ -20,8 +20,8 @@ public class WatchingMovieIdle extends On implements IState {
 
     @Override
     public void movieOn() {
-        if(movieDownloader.getCurrStateDownload() instanceof DownloadFile && (movieDownloader.getDownload()/movieDownloader.getFileSize()) >= 0.2){
-            movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+        if(on.getCurrStateDownload() instanceof DownloadFile && (on.getDownload()/on.getFileSize()) >= 0.2){
+            on.setCurrStateWatchingMovie(on.getWatchMovie());
         }
     }
 
