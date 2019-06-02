@@ -8,7 +8,6 @@ public class DownloadIdle extends On implements IState{
 
     @Override
     public void entry() {
-        super.entry();
         movieDownloader.setChance(0);
         movieDownloader.setAvailableSpace(false);
         movieDownloader.resetDownload();
@@ -41,10 +40,14 @@ public class DownloadIdle extends On implements IState{
     }
 
     @Override
-    public void turnOff() {}
+    public void turnOff() {
+        super.exit();
+    }
 
     @Override
-    public void turnOn() {}
+    public void turnOn() {
+        super.entry();
+    }
 
     @Override
     public void internetOff() {

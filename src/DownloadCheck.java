@@ -9,7 +9,6 @@ public class DownloadCheck extends On implements IState,Runnable {
 
     @Override
     public void entry() {
-        super.entry();
         System.out.println("enter downloadCheck state");
         doCheck();
     }
@@ -37,6 +36,7 @@ public class DownloadCheck extends On implements IState,Runnable {
     public void run() {
         if(!Thread.interrupted()){
             try{
+                System.out.println("waiting 4 seconds");
                 Thread.sleep(4000);
                 if(movieDownloader.getFileSize() < movieDownloader.getStorage()){
                     movieDownloader.setAvailableSpace(true);
@@ -55,12 +55,12 @@ public class DownloadCheck extends On implements IState,Runnable {
 
     @Override
     public void turnOff() {
-
+        super.exit();
     }
 
     @Override
     public void turnOn() {
-
+        super.entry();
     }
 
     @Override

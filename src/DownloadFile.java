@@ -9,8 +9,8 @@ public class DownloadFile extends On implements IState,Runnable{
 
     @Override
     public void entry() {
-        super.entry();
         System.out.println("enter downloadFile state");
+        movieDownloader.setStorage(movieDownloader.getStorage() - movieDownloader.getFileSize());
         downloadFileThread = new Thread(this);
         downloadFileThread.start();
     }
@@ -41,6 +41,7 @@ public class DownloadFile extends On implements IState,Runnable{
     @Override
     public void downloadAborted() {
         movieDownloader.setPoints(-1);
+        movieDownloader.setStorage(movieDownloader.getStorage() + movieDownloader.getFileSize());
         movieDownloader.setCurrStateDownload(movieDownloader.getDownloadIdle());
     }
 

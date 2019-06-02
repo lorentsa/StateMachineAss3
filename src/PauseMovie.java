@@ -7,9 +7,43 @@ public class PauseMovie implements IState {
     }
 
     @Override
+    public void entry() {
+        System.out.println("enter pauseMovie state");
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("exit pauseMovie state");
+    }
+
+    @Override
+    public void internetOn() {
+        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+    }
+
+    @Override
     public void turnOff() {
 
     }
+
+    @Override
+    public void errorFixed() {
+        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+    }
+
+    @Override
+    public void resume() {
+        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchMovie());
+    }
+
+    @Override
+    public void movieOff() {
+        movieDownloader.setCurrStateWatchingMovie(movieDownloader.getWatchingMovieIdle());
+    }
+
+
+
+
 
     @Override
     public void turnOn() {
@@ -21,10 +55,6 @@ public class PauseMovie implements IState {
 
     }
 
-    @Override
-    public void internetOn() {
-
-    }
 
     @Override
     public void fileRequest() {
@@ -41,10 +71,6 @@ public class PauseMovie implements IState {
 
     }
 
-    @Override
-    public void errorFixed() {
-
-    }
 
     @Override
     public void movieOn() {
@@ -61,13 +87,5 @@ public class PauseMovie implements IState {
 
     }
 
-    @Override
-    public void movieOff() {
 
-    }
-
-    @Override
-    public void resume() {
-
-    }
 }

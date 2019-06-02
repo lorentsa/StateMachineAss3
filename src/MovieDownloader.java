@@ -1,5 +1,5 @@
 public class MovieDownloader {
-    private int storage = 100;
+    private double storage = 100;
     private int chance = 0;
     private boolean availableSpace = false;
     private int points = 0;
@@ -18,12 +18,12 @@ public class MovieDownloader {
     private IState pauseMovie;
     private IState watchingMovieIdle;
     private IState watchMovie;
-    private IState on;
     private IState off;
 
    private IState currStateWatchingMovie;
    private IState currStateDownload;
    private IState currStateInternet;
+   private IState currStateSuper;
 
 
     public MovieDownloader(){
@@ -37,8 +37,10 @@ public class MovieDownloader {
         pauseMovie = new PauseMovie(this);
         watchingMovieIdle = new WatchingMovieIdle(this);
         watchMovie = new WatchMovie(this);
+        off = new Off(this);
 
-
+        currStateSuper = off;
+        off.entry();
         currStateDownload= downloadIdle;
         currStateInternet=  offline;
         currStateWatchingMovie= watchingMovieIdle;
@@ -82,11 +84,11 @@ public class MovieDownloader {
         this.fileSize = fileSize;
     }
 
-    public int getStorage() {
+    public double getStorage() {
         return storage;
     }
 
-    public void setStorage(int storage) {
+    public void setStorage(double storage) {
         this.storage = storage;
     }
 
