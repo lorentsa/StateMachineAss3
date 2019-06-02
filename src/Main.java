@@ -62,6 +62,10 @@ public class Main {
                     catch (Exception e){
                         System.out.println("not a number");
                     }
+                    if(storageSize<=0) {
+                        System.out.println("ILLEGAL STORAGE");
+                        storageSize = 100;
+                    }
                     movieDownloader.setStorage(storageSize);
                     break;
                 case "15":
@@ -74,28 +78,31 @@ public class Main {
                     catch (Exception e){
                         System.out.println("not a number");
                     }
+                    if(fileSize <= 0) {
+                        System.out.println("ILLEGAL FILE SIZE");
+                        fileSize = 10;
+                    }
                     movieDownloader.setFileSize(fileSize);
                     break;
                 case "16":
                     System.out.println("What is the length you want to set to the movie?");
                     String lntOfMovie = f.next();
-                    int movieLnt=60;
+                    int movieLnt = 60;
                     try {
                         movieLnt = Integer.parseInt(lntOfMovie);
                     }
                     catch (Exception e){
                         System.out.println("not a number");
                     }
+                    if(movieLnt <= 0) {
+                        System.out.println("ILLEGAL MOVIE LENGTH");
+                        movieLnt = 60;
+                    }
                     movieDownloader.setMovieLength(movieLnt);
                     break;
                 case "17":
                     break;
             }
-            /*try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
         while (!s.equals("17"));
     }
